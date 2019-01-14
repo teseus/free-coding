@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.1.2.RELEASE'
+        spockVersion = '1.0-groovy-2.4'
     }
     repositories {
         mavenCentral()
@@ -22,6 +23,11 @@ repositories {
     mavenCentral()
 }
 
+List spock = [
+        "org.spockframework:spock-core:${spockVersion}",
+        "org.spockframework:spock-spring:${spockVersion}"
+]
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
@@ -33,4 +39,5 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile spock
 }
