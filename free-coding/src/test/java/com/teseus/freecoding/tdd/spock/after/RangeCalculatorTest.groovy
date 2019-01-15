@@ -1,4 +1,5 @@
-package com.teseus.freecoding
+package com.teseus.freecoding.tdd.spock.after
+
 
 import spock.lang.Specification
 import spock.lang.Subject
@@ -8,6 +9,8 @@ class RangeCalculatorTest extends Specification {
     @Subject
     RangeCalculator rangeCalculator
 
+    RatioRepository ratioRepositoryMock = Mock(RatioRepository)
+
     def setup() {
 
     }
@@ -15,11 +18,16 @@ class RangeCalculatorTest extends Specification {
     @Unroll
     def "test1 #DESC"() {
         given:
-        rangeCalculator = new RangeCalculator()
+        rangeCalculator = new RangeCalculator(ratioRepository: ratioRepositoryMock)
         when:
         def result = rangeCalculator.func1(INPUT)
         then:
         result == OUTPUT
+        and:
+        1 * ratioRepositoryMock.getOne(_) >> Mock(Ratio){
+            getValue() >> 2.0d
+        }
+
         where:
         DESC         | INPUT || OUTPUT
         "UNDER TEST" | 1     || 1

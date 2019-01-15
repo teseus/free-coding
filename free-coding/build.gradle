@@ -39,5 +39,6 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'cglib:cglib:2.2'
     testCompile spock
 }
