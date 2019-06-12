@@ -1,1 +1,3 @@
 rootProject.name = 'free-coding'
+
+include 'test-codes'

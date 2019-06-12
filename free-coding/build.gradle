@@ -12,6 +12,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -46,3 +47,12 @@ dependencies {
     }
 
 }
+
+project(':test-codes'){
+    dependencies{
+        implementation 'org.springframework.boot:spring-boot-starter-batch'
+        testCompile('org.springframework.batch:spring-batch-test')
+
+    }
+}
+
