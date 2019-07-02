@@ -1,4 +1,4 @@
-package com.teseus.exercise;
+package com.example.teseus.freecoding.exercise;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.teseus.exercise;
+package com.example.teseus.freecoding.exercise;
 
 import java.util.HashMap;
 import java.util.Map;

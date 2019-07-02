@@ -1,4 +1,4 @@
-package com.teseus.exercise;// Author: Rodney Shaghoulian
+package com.example.teseus.freecoding.exercise;// Author: Rodney Shaghoulian
 // Github: github.com/RodneyShag
 
 import java.util.Arrays;

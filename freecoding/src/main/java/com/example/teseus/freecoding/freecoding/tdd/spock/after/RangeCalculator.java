@@ -1,4 +1,4 @@
-package com.teseus.freecoding.tdd.spock.after;
+package com.example.teseus.freecoding.freecoding.tdd.spock.after;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

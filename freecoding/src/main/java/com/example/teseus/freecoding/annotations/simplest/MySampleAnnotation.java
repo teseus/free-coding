@@ -1,4 +1,4 @@
-package com.teseus.annotations.simplest;
+package com.example.teseus.freecoding.annotations.simplest;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

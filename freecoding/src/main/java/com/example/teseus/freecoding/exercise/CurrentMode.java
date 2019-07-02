@@ -1,4 +1,4 @@
-package com.teseus.exercise;
+package com.example.teseus.freecoding.exercise;
 
 import lombok.AllArgsConstructor;
 
