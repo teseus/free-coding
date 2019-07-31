@@ -51,7 +51,3 @@ dependencies {
 
 project(':lynda'){
 }
-
-project(':free-coding'){
-}
-
