@@ -1,8 +1,11 @@
 package com.example.demo.monad;
 
+import lombok.Getter;
+
 import java.util.function.Function;
 
 public class Wrap<T>{
+    @Getter
     private T value;
 
     private Wrap(T value){
