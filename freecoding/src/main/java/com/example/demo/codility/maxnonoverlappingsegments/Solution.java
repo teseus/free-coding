@@ -1,8 +1,5 @@
 package com.example.demo.codility.maxnonoverlappingsegments;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
     public int solution(int[] A, int[] B) {
 
@@ -20,11 +17,6 @@ class Solution {
 
         return count;
 
-    }
-
-    private boolean isOverLap(int a, int b, int x, int y){
-        if(a<=x && x<=b) return true;
-        return a <= y && y <= b;
     }
 
     public static void main(String[] args) {
