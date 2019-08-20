@@ -1,10 +1,7 @@
 package com.example.demo.monad;
 
-import lombok.ToString;
-
 import java.util.function.Function;
 
-@ToString
 public class Monad<T> {
     private T value;
 
