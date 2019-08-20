@@ -49,6 +49,8 @@ public class Wrap<T>{
 
         Wrap<Integer> map1 = a.map(it -> it + 1).map(it->it);
 
+        Wrap<Integer> integerWrap1 = a.flatMap(this::inc);
+
         return a.flatMap(this::inc).map(it->it);
     }
 
