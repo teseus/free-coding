@@ -20,7 +20,7 @@ public class MonadTest {
 
         Wrap<Integer> finalone = a.flatMap(this::inc).flatMap(this::inc);
 
-        System.out.println("final = " +  finalone);
+        System.out.println("final = " +  finalone.getValue());
     }
 
     public Wrap<Integer> inc(Integer x) {

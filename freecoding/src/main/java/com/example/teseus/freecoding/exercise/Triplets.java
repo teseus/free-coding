@@ -1,6 +1,5 @@
 package com.example.teseus.freecoding.exercise;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Triplets {
@@ -22,7 +21,7 @@ public class Triplets {
 
         }
 
-        System.out.println("you input = " + List.of(alice) + "," + List.of(bob));
+        //System.out.println("you input = " + List.of(alice) + "," + List.of(bob));
 
     }
 
