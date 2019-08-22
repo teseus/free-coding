@@ -1,4 +1,4 @@
-package freecoding.annotations.simplest;
+package freecoding.exercise.annotations.simplest;
 
 import java.lang.reflect.Method;
 

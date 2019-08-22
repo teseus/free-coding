@@ -1,4 +1,4 @@
-package freecoding.codility.template;
+package freecoding.exercise.codility.template;
 
 import lombok.extern.slf4j.Slf4j;
 
