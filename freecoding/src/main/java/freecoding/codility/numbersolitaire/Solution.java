@@ -1,4 +1,4 @@
-package com.example.demo.codility.numbersolitaire;
+package freecoding.codility.numbersolitaire;
 
 import lombok.extern.slf4j.Slf4j;
 

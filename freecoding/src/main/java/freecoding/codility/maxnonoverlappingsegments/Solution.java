@@ -1,4 +1,4 @@
-package com.example.demo.codility.maxnonoverlappingsegments;
+package freecoding.codility.maxnonoverlappingsegments;
 
 class Solution {
     public int solution(int[] A, int[] B) {

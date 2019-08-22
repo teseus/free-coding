@@ -1,4 +1,4 @@
-package com.example.demo.monad;
+package freecoding.exercise.monad;
 
 
 public class MonadTest {

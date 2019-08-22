@@ -1,4 +1,4 @@
-package com.example.demo.codility.template;
+package freecoding.codility.template;
 
 import lombok.extern.slf4j.Slf4j;
 
