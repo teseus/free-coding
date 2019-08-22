@@ -1,4 +1,4 @@
-package com.example.teseus.freecoding.annotations.simplest;
+package freecoding.annotations.simplest;
 
 import java.lang.reflect.Method;
 

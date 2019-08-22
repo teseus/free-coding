@@ -1,4 +1,4 @@
-package com.example.teseus.freecoding.exercise.hackersrank.appleandorange;
+package freecoding.exercise.hackersrank.appleandorange;
 
 import java.util.Arrays;
 import java.util.Scanner;

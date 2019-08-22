@@ -1,4 +1,4 @@
-package com.example.teseus.freecoding.exercise.Trees;
+package freecoding.exercise.Trees;
 
 public class Node {
     int data;
