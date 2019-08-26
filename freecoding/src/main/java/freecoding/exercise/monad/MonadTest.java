@@ -10,21 +10,19 @@ public class MonadTest {
 
     private void test() {
 
-        Wrap<Integer> a = Wrap.of(1);          // Wrap(value = 1)
+        Monad<Integer> a = Monad.of(1);
 
-        Wrap<Integer> b = a.map(i->i+9);       // Wrap(value = 10)
+        System.out.println(a.map(MonadTest::incr));
 
-        Wrap<Integer> c = b.map(i->i*11);      // Wrap(value = 110)
-
-        a.map(i->i*10).map(i->i+11);           // Wrap(value = 21)
-
-        Wrap<Integer> finalone = a.flatMap(this::inc).flatMap(this::inc);
-
-        System.out.println("final = " +  finalone.getValue());
+        System.out.println(a.flatMap(MonadTest::incr).flatMap(MonadTest::multi));
     }
 
-    public Wrap<Integer> inc(Integer x) {
-        return Wrap.of(x + 1);
+    public static Monad<Integer> incr(Integer i){
+        return Monad.of(i+1);
+    }
+
+    public static Monad<Integer> multi(Integer i){
+        return Monad.of(i*2);
     }
 
 }
