@@ -1,53 +1,101 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.2.RELEASE'
-        spockVersion = '1.0-groovy-2.4'
+        springBootVersion = '2.1.5.RELEASE'
+        kafka = '2.2.7.RELEASE'
+        querydslPluginVersion = '1.0.10'
     }
     repositories {
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" } // plugin 저장소
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7")
+        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
+        classpath "io.franzbecker:gradle-lombok:1.11"
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'scala'
-apply plugin: 'groovy'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.teseus'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-repositories {
-    mavenCentral()
+plugins {
+    id "org.sonarqube" version "2.7"
 }
 
-List spock = [
-        "org.spockframework:spock-core:${spockVersion}",
-        "org.spockframework:spock-spring:${spockVersion}"
-]
+ext {
+    projectGroup = 'com.wemakeprice.ad'
+    projectVersion = '0.0.1'
+}
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.flywaydb:flyway-core'
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
-    compileOnly 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'cglib:cglib:2.2'
-    testCompile spock
-    testCompile('com.athaydes:spock-reports:1.3.1') {
-        transitive = false // this avoids affecting your version of Groovy/Spock
+def querydslProjects = [project(':freecoding')]
+
+configure(subprojects.findAll{it.name != 'point'}){ subproject ->
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.sonarqube'
+    apply plugin: 'io.franzbecker.gradle-lombok'
+
+    group = "${projectGroup}"
+    version = "${projectVersion}"
+
+    sourceCompatibility = '11.0'
+    targetCompatibility = '11.0'
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
     }
 
+    dependencies {
+        compile("com.querydsl:querydsl-jpa")
+        compile("com.querydsl:querydsl-apt")
+
+        compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.4'
+        compile ("io.reactivex.rxjava3:rxjava:3.0.0-RC4")
+
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        compile 'org.projectlombok:lombok'
+        annotationProcessor("org.projectlombok:lombok")
+        testCompileOnly("org.projectlombok:lombok")
+        testAnnotationProcessor("org.projectlombok:lombok")
+
+        compile 'com.google.guava:guava:23.0'
+
+        testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
+        testCompile 'org.spockframework:spock-spring:1.2-groovy-2.5'
+        compile 'cglib:cglib-nodep:3.2.10'
+    }
+
+    task initSourceFolders {
+        sourceSets*.java.srcDirs*.each {
+            if( !it.exists() ) {
+                it.mkdirs()
+            }
+        }
+
+        sourceSets*.resources.srcDirs*.each {
+            if( !it.exists() ) {
+                it.mkdirs()
+            }
+        }
+    }
 }
 
-project(':lynda'){
+project(':freecoding'){
+    bootJar{ enabled = false }
+    jar {enabled = true }
+
+    dependencies{
+        compile('org.springframework.boot:spring-boot-starter-web')
+        compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+        compile 'org.springframework.boot:spring-boot-starter-validation'
+
+        runtimeOnly 'com.h2database:h2'
+        compile('mysql:mysql-connector-java')
+
+        compile('org.apache.httpcomponents:httpasyncclient')
+        compile 'org.modelmapper:modelmapper:2.3.2'
+    }
 }
