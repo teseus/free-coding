@@ -38,8 +38,8 @@ configure(subprojects.findAll{it.name != 'point'}){ subproject ->
     group = "${projectGroup}"
     version = "${projectVersion}"
 
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+    sourceCompatibility = '11.0'
+    targetCompatibility = '11.0'
 
     repositories {
         mavenCentral()
@@ -50,6 +50,9 @@ configure(subprojects.findAll{it.name != 'point'}){ subproject ->
     dependencies {
         compile("com.querydsl:querydsl-jpa")
         compile("com.querydsl:querydsl-apt")
+
+        compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.4'
+        compile ("io.reactivex.rxjava3:rxjava:3.0.0-RC4")
 
         implementation 'org.springframework.boot:spring-boot-starter'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
