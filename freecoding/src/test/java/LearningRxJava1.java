@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LearningRxJava1 {
     private static final String SOME_KEY = "FOO";
+    int count = 5;
 
     @Test
     public void 단순옵져버블_create() {
@@ -203,14 +204,34 @@ public class LearningRxJava1 {
     @Test
     public void 레인지변경() {
         int start = 1;
-        int count = 5;
         Observable<Integer> observable = Observable.range(start, count);
 
-        observable.subscribe(s -> System.out.println("Observerble 1:" + s));
+        observable.subscribe(s -> System.out.println("Range 1:" + s));
 
         count = 10;
 
-        observable.subscribe(s -> System.out.println("Observerble 2:" + s));
+        observable.subscribe(s -> System.out.println("Range 2:" + s));
 
+    }
+
+    @Test
+    public void 레인지변경_defer(){
+        int start = 0;
+        Observable<Integer> observable = Observable.defer(() -> Observable.range(start, count));
+
+        observable.subscribe(it-> System.out.println("Range 1:" + it));
+        count = 10;
+        observable.subscribe(it-> System.out.println("Range 2:" + it));
+    }
+
+    @Test
+    public void 옵저버블_프롬콜러블(){  //1/0을 펑터로 보내면 수행을 인자로 밀어넣게 되어 그 줄에서 바로 상수로 평가되지 않는다.
+//        Observable<Integer> just = Observable.just(1 / 0);
+//        just.subscribe(s-> System.out.println("Just :" + s),
+//                e -> System.out.println("Error Captured: " + e));
+
+        Observable<Integer> fromCallable = Observable.fromCallable(() -> 1 / 0);
+        fromCallable.subscribe(s-> System.out.println("FromCallable :" + s),
+                e -> System.out.println("Error Captured: " + e));
     }
 }
