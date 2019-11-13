@@ -7,6 +7,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.ResourceObserver;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
@@ -353,19 +354,48 @@ public class LearningRxJava2 {
     public void Reduce_Operator(){
         Observable.just(5,3,7,10,2,14)
                 .reduce((a,b)->a+b)
-                .subscribe(i-> System.out.println("Reduce_Operator1 :" + i), Throwable::printStackTrace
+                .subscribe(i-> System.out.println("Reduce_Operator 1:" + i), Throwable::printStackTrace
                         , () -> System.out.println("Done"));
 
         System.out.println("--");
 
         Observable.just(5, 3, 7, 10, 2, 14)
-                .reduce("", (pre, now) -> pre + (pre.isEmpty() ? "" : ",") + now)
+                .reduce(0, (pre, now) -> pre + now)
                 .subscribe(i -> System.out.println("Reduce_Operator 2:" + i), Throwable::printStackTrace);
+
+        System.out.println("--");
+
+        Observable.just(5, 3, 7, 10, 2, 14)
+                .reduce("", (pre, now) -> pre + (pre.isEmpty() ? "" : ",") + now)
+                .subscribe(i -> System.out.println("Reduce_Operator 3:" + i), Throwable::printStackTrace);
 
         System.out.println("--");
 
         Observable.just(5, 3, 7, 10, 2, 14)
                 .scan("", (pre, now) -> pre + (pre.isEmpty() ? "" : ",") + now)
                 .subscribe(i -> System.out.println("Scan_Operator:" + i), Throwable::printStackTrace);
+    }
+
+    @Test
+    public void All_Operator(){
+        Observable.just(5, 3, 7, 11, 2, 14)
+                .all(i->i<10)
+                .subscribe(i-> System.out.println("Received :" + i), Throwable::printStackTrace);
+
+    }
+
+    @Test
+    public void Any_Operator() {
+        Observable.just("2019-03-01", "2019-04-01", "2019-05-01", "2019-06-01", "2019-02-01")
+                .map(LocalDate::parse)
+                .any(it -> it.getMonthValue() >= 6)
+                .subscribe(i -> System.out.println("Received :" + i), Throwable::printStackTrace);
+    }
+
+    @Test
+    public void Contains_Operator(){
+        Observable.range(1, 10000)
+                .contains(9563)
+                .subscribe(i -> System.out.println("Received :" + i), Throwable::printStackTrace);
     }
 }
