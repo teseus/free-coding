@@ -1,7 +1,7 @@
 package freecoding.exercise.rxjava.observable;
 
 
-import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.Flowable;
 
 public class TestRx {
     public static void main(String[] args) {

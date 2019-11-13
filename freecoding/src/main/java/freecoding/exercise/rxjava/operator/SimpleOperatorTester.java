@@ -1,6 +1,6 @@
 package freecoding.exercise.rxjava.operator;
 
-import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.Observable;
 
 public class SimpleOperatorTester {
     public static void main(String[] args) {

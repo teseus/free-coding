@@ -1,11 +1,11 @@
 package freecoding.exercise.rxjava.observable;
 
-import java.util.concurrent.TimeUnit;
+import io.reactivex.Completable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.schedulers.Schedulers;
 
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.observers.DisposableCompletableObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import java.util.concurrent.TimeUnit;
 
 public class CompletableTester {
     public static void main(String[] args) throws InterruptedException {

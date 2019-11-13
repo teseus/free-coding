@@ -1,7 +1,7 @@
 package freecoding.exercise.rxjava.subject;
 
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.subjects.PublishSubject;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.PublishSubject;
 
 public class PublishSubjectTester {
     public static void main(String[] args) {

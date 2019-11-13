@@ -1,7 +1,7 @@
 package freecoding.exercise.rxjava.operator;
 
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.observables.ConnectableObservable;
+import io.reactivex.Observable;
+import io.reactivex.observables.ConnectableObservable;
 
 public class ConnectableOperatorTester {
     public static void main(String[] args) {

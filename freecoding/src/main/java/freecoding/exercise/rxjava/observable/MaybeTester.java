@@ -1,11 +1,11 @@
 package freecoding.exercise.rxjava.observable;
 
-import java.util.concurrent.TimeUnit;
+import io.reactivex.Maybe;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableMaybeObserver;
+import io.reactivex.schedulers.Schedulers;
 
-import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.observers.DisposableMaybeObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import java.util.concurrent.TimeUnit;
 
 public class MaybeTester {
     public static void main(String[] args) throws InterruptedException {

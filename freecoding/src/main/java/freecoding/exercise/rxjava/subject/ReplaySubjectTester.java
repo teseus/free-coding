@@ -1,6 +1,6 @@
 package freecoding.exercise.rxjava.subject;
 
-import io.reactivex.rxjava3.subjects.ReplaySubject;
+import io.reactivex.subjects.ReplaySubject;
 
 public class ReplaySubjectTester {
     public static void main(String[] args) {

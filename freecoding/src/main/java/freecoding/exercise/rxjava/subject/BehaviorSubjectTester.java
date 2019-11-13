@@ -1,7 +1,7 @@
 package freecoding.exercise.rxjava.subject;
 
 
-import io.reactivex.rxjava3.subjects.BehaviorSubject;
+import io.reactivex.subjects.BehaviorSubject;
 
 public class BehaviorSubjectTester {
     public static void main(String[] args) {

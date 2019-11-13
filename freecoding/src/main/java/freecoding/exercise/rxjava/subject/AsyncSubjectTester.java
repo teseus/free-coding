@@ -1,7 +1,7 @@
 package freecoding.exercise.rxjava.subject;
 
 
-import io.reactivex.rxjava3.subjects.AsyncSubject;
+import io.reactivex.subjects.AsyncSubject;
 
 public class AsyncSubjectTester {
     public static void main(String[] args) {
