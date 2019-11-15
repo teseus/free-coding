@@ -94,8 +94,63 @@ public class RxJavaCollectionOperators {
                     } catch (ArithmeticException e) {
                         return -1;
                     }
-                }).subscribe(i-> System.out.println("Try Catch Received :" + i), Throwable::printStackTrace
+                })
+                .subscribe(i-> System.out.println("Try Catch Received :" + i), Throwable::printStackTrace
                 , () -> System.out.println("Take Done"));
+    }
+
+    @Test
+    public void OnErrorResumeNext_Operator(){
+        Observable.just(5,2,4,0,3,2,8)
+                .map(i->10/i)
+                .onErrorResumeNext(Observable.just(-1).repeat(3))
+                .subscribe(i-> System.out.println("onErrorResumeNext Received 1 : " + i), Throwable::printStackTrace
+                ,()-> System.out.println("Done"));
+
+        Observable.just(5,2,4,0,3,2,8)
+                .map(i->10/i)
+                .onErrorResumeNext(Observable.empty())
+                .subscribe(i-> System.out.println("onErrorResumeNext Received 2:" + i), Throwable::printStackTrace
+                        , () -> System.out.println("Done"));
+
+        Observable.just(5,2,4,0,3,2,8)
+                .map(i->10/i)
+                .onErrorResumeNext((Throwable e)->Observable.just(-1).repeat(3))
+                .subscribe(i-> System.out.println("Try Catch Received :" + i), Throwable::printStackTrace
+                        , () -> System.out.println("Done"));
+    }
+
+    @Test
+    public void Retry_Operator(){
+        Observable.just(5,2,4,0,3,2,8)
+                .map(i->10/i)
+                .retry(2)
+                .subscribe(i-> System.out.println("Try Catch Received :" + i), Throwable::printStackTrace
+                        , () -> System.out.println("Take Done"));
+    }
+
+    @Test
+    public void DoOnNext_DoOnComplete_DoOnError_Operator(){
+        Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+                .doOnNext(i-> System.out.println("Processing: " + i))
+                .map(String::length)
+                .subscribe(i-> System.out.println("DoOnNext Received :" + i), Throwable::printStackTrace
+                        , () -> System.out.println("Done"));
+
+
+        Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+                .doOnComplete(() -> System.out.println("Source Emmitting is Completed"))
+                .map(String::length)
+                .subscribe(i-> System.out.println("DoOnComplete Received :" + i), Throwable::printStackTrace
+                        , () -> System.out.println("Done"));
+
+        Observable.just(5,2,4,0,3,2,8)
+                .doOnError(e-> System.out.println("Source emintting eror"))
+                .map(i->10/i)
+                .doOnError(e-> System.out.println("Error on Mapping"))
+                .subscribe(i-> System.out.println("DoOnError Received :" + i), Throwable::printStackTrace
+                        , () -> System.out.println("Done"));
+
     }
 
 }
