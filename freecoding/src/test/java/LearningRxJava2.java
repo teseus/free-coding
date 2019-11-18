@@ -61,16 +61,8 @@ public class LearningRxJava2 {
 
     public static void runProcess() {
         System.out.println("start");
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
         System.out.println("end");
-    }
-
-    public static void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test
@@ -78,12 +70,12 @@ public class LearningRxJava2 {
         Disposable disposable = Observable.interval(1, TimeUnit.SECONDS)
                 .subscribe(n -> System.out.println("Received :" + n));
 
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
 
         disposable.dispose();
         System.out.println("disposed");
 
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
     }
 
     @Test
@@ -115,12 +107,12 @@ public class LearningRxJava2 {
         compositeDisposable.add(disposable1);
         compositeDisposable.add(disposable2);
 
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
 
         System.out.println("Turn off");
         compositeDisposable.dispose();
 
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
 
     }
 
@@ -134,7 +126,7 @@ public class LearningRxJava2 {
                         return;
                     }
                     emitter.onNext(i);
-                    sleep(10);
+                    RxJavaUtils.sleep(10);
                 }
                 emitter.onComplete();
             } catch (Throwable e) {
@@ -143,7 +135,7 @@ public class LearningRxJava2 {
         });
         System.out.println("Observable Creation Done");
 
-        sleep(100);
+        RxJavaUtils.sleep(100);
 
         System.out.println("Wait, and start subscrition");
 
@@ -177,7 +169,7 @@ public class LearningRxJava2 {
                 .subscribe(i-> System.out.println("Received :" + i), Throwable::printStackTrace
                         , () -> System.out.println("Take_Interval_combi Done"));
 
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
     }
 
     @Test
@@ -313,7 +305,7 @@ public class LearningRxJava2 {
                 .subscribe(i-> System.out.println("Delay_Operator :" + i), Throwable::printStackTrace
                         , () -> System.out.println("Take Done"));
 
-        sleep(5000);
+        RxJavaUtils.sleep(5000);
 
     }
 

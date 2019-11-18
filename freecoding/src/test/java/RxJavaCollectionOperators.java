@@ -153,4 +153,20 @@ public class RxJavaCollectionOperators {
 
     }
 
+    @Test
+    public void DoOnSubscribe_DoOnDispose_Operator() {
+        Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+                .doOnSubscribe(s -> System.out.println("Subscribing :" + s))
+                .doOnDispose(() -> System.out.println("Disposing"))
+                .subscribe(i -> System.out.println("Received :" + i));
+    }
+
+    @Test
+    public void DoOnSuccess_Operator() {
+        Observable.just(5, 3, 7, 10, 2, 14)
+                .reduce((x, y) -> x + y)
+                .doOnSuccess(i -> System.out.println("Emmitting :" + i))
+                .subscribe(i -> System.out.println("Received :" + i));
+    }
+
 }
