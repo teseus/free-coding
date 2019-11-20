@@ -51,7 +51,7 @@ public class RxJavaCombiningObservables {
         Observable.merge(seconds, milliseconds)
                 .subscribe(System.out::println);
 
-        RxJavaUtils.sleep(5000);
+        MyUtils.sleep(5000);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class RxJavaCombiningObservables {
                         .map(i2 -> i + "s interval: " + ((i + 1) * i) + " seconds elapsed"))
                 .subscribe(System.out::println);
 
-        RxJavaUtils.sleep(12000);
+        MyUtils.sleep(12000);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class RxJavaCombiningObservables {
                                 .map(i2 -> i + "s interval: "
                                         + ((i + 1) * i) + " seconds elapsed");
                 }).subscribe(System.out::println);
-        RxJavaUtils.sleep(12000);
+        MyUtils.sleep(12000);
     }
 
     @Test

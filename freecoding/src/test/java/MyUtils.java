@@ -1,4 +1,4 @@
-public class RxJavaUtils {
+public class MyUtils {
     public static void sleep(int millis) {
         try {
             Thread.sleep(millis);
