@@ -1,4 +1,5 @@
 import io.reactivex.Observable;
+import io.reactivex.observables.GroupedObservable;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -113,5 +114,21 @@ public class RxJavaCombiningObservables2 {
                         () -> System.out.println("Done"));
 
         MyUtils.sleep(3000);
+    }
+
+    @Test
+    public void Grouping_Combining() {
+        Observable<String> source1 = Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon");
+        Observable<GroupedObservable<Integer, String>> byLengths = source1.groupBy(String::length);
+
+        byLengths.flatMapSingle(grp->grp.toList())
+                .subscribe(i -> System.out.println("Received 1 : " + i), Throwable::printStackTrace,
+                        () -> System.out.println("Done"));
+
+        byLengths.flatMapSingle(grp->
+                grp.reduce("",(x,y) -> x.equals("")?y:x + "," + y))
+                .subscribe(i -> System.out.println("Received 2 : " + i), Throwable::printStackTrace,
+                        () -> System.out.println("Done"));
+
     }
 }
