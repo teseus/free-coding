@@ -89,7 +89,7 @@ public class RxJavaSubjects {
 
         subject.onNext("Alpha");
         subject.onNext("Beta");
-        subject.onNext("Gamma");
+        subject.onNext("Gamma"); //the last is shared
 
         subject.subscribe(s-> System.out.println("Observer 2 : " + s));
 
@@ -121,7 +121,7 @@ public class RxJavaSubjects {
 
         subject.onNext("Alpha");
         subject.onNext("Beta");
-        subject.onNext("Gamma");
+        subject.onNext("Gamma"); //the last is available
         subject.onComplete();
 
         subject.subscribe(s-> System.out.println("Observer 2 : " +s), Throwable::printStackTrace,
@@ -148,7 +148,7 @@ public class RxJavaSubjects {
         UnicastSubject<String> unicastSubject = UnicastSubject.create();
 
         Observable.interval(300, TimeUnit.MILLISECONDS)
-                .map(l->((l+2)*300) + " milliseconds")
+                .map(l->((l+1)*300) + " milliseconds")
                 .subscribe(unicastSubject);
 
         MyUtils.sleep(2000);

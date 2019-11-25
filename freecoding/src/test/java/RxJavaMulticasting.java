@@ -233,7 +233,6 @@ public class RxJavaMulticasting {
                 .cacheWithInitialCapacity(9);
 
         limit_cache.subscribe(System.out::println);
-
     }
 
 }

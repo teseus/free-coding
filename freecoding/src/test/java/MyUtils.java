@@ -1,3 +1,5 @@
+import java.net.URL;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MyUtils {
@@ -16,5 +18,13 @@ public class MyUtils {
     public static <T> T intenseCalculation(T value) {
         sleep(ThreadLocalRandom.current().nextInt(3000));
         return value;
+    }
+
+    public static String getResponse(String path) {
+        try {
+            return new Scanner(new URL(path).openStream(), "UTF-8").useDelimiter("\\A").next();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 }

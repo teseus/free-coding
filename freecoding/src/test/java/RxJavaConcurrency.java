@@ -47,4 +47,13 @@ public class RxJavaConcurrency {
 
         MyUtils.sleep(20000);
     }
+
+    @Test
+    public void KeepAlive_Until_OnComplete() {
+        Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+                .map(i -> MyUtils.intenseCalculation(i))
+                .subscribeOn(Schedulers.computation())
+                .blockingSubscribe(System.out::println, Throwable::printStackTrace,
+                        () -> System.out.println("Done"));
+    }
 }
