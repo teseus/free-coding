@@ -12,4 +12,9 @@ public class MyUtils {
     public static int randomInt() {
         return ThreadLocalRandom.current().nextInt(100000);
     }
+
+    public static <T> T intenseCalculation(T value) {
+        sleep(ThreadLocalRandom.current().nextInt(3000));
+        return value;
+    }
 }
