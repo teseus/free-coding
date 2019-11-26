@@ -51,8 +51,8 @@ public class RxJavaConcurrency {
     @Test
     public void KeepAlive_Until_OnComplete() {
         Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
-                .map(i -> MyUtils.intenseCalculation(i))
                 .subscribeOn(Schedulers.computation())
+                .map(i -> MyUtils.intenseCalculation(i))
                 .blockingSubscribe(System.out::println, Throwable::printStackTrace,
                         () -> System.out.println("Done"));
     }
