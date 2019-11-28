@@ -1,10 +1,14 @@
+import io.reactivex.BackpressureOverflowStrategy;
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import org.junit.Test;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -153,5 +157,152 @@ public class BackPressure {
                     }
                 });
         MyUtils.sleep(20000);
+    }
+
+    @Test
+    public void backpressure_strategy(){
+        Flowable<Object> source = Flowable.create(emitter -> {
+            for (int i = 0; i <= 1000; i++) {
+                if (emitter.isCancelled())
+                    return;
+                emitter.onNext(i);
+            }
+            emitter.onComplete();
+        }, BackpressureStrategy.BUFFER); //Queues up emissions in an unbounded queue until the downstream is able to consume them, but can cause an OutOfMemoryError if the queue gets too large.
+        Disposable dispose = source.observeOn(Schedulers.io())
+                .subscribe(System.out::println);
+
+        MyUtils.sleep(1000);
+        dispose.dispose();
+        System.out.println("==============");
+
+        Flowable<Object> source1 = Flowable.create(emitter -> {
+            for (int i = 0; i <= 1000; i++) {
+                if (emitter.isCancelled())
+                    return;
+                emitter.onNext(i);
+            }
+            emitter.onComplete();
+        }, BackpressureStrategy.ERROR); //Queues up emissions in an unbounded queue until the downstream is able to consume them, but can cause an OutOfMemoryError if the queue gets too large.
+        source1.observeOn(Schedulers.io())
+                .subscribe(System.out::println);
+
+        MyUtils.sleep(1000);
+    }
+
+    @Test
+    public void change_Observable_to_Flowable(){
+        Observable<Integer> observable = Observable.range(1, 1000);
+        observable.toFlowable(BackpressureStrategy.BUFFER)
+                .subscribeOn(Schedulers.io())
+                .subscribe(System.out::println);
+
+        MyUtils.sleep(10000);
+    }
+
+    @Test
+    public void associate_Flowable_with_Observable(){
+        Flowable<Integer> flowable = Flowable.range(1, 1000).subscribeOn(Schedulers.computation());
+
+        Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+                .flatMap(s->flowable.map(i->i+"-"+s).toObservable())
+                .subscribe(System.out::println);
+
+        MyUtils.sleep(5000);
+    }
+
+    @Test
+    public void onBackPressureBuffer(){
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureBuffer()
+                .observeOn(Schedulers.computation())
+                .subscribe(aLong -> {
+                    MyUtils.sleep(500);
+                    System.out.println(aLong);
+                });
+
+        MyUtils.sleep(5000);
+    }
+
+    @Test
+    public void onBackPressureBuffer_DROP_LATEST(){
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureBuffer(10,
+                        ()-> System.out.println("buffer overflow!!"),
+                        BackpressureOverflowStrategy.DROP_LATEST)
+                .observeOn(Schedulers.computation())
+                .subscribe(aLong -> {
+                    MyUtils.sleep(5);
+                    System.out.println(aLong);
+                });
+
+        MyUtils.sleep(5000);
+    }
+
+    @Test
+    public void onBackPressureLatest(){
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureLatest()
+                .observeOn(Schedulers.io())
+                .subscribe(aLong -> {
+                    MyUtils.sleep(5);
+                    System.out.println(aLong);
+                });
+
+        MyUtils.sleep(5000);
+    }
+
+    @Test
+    public void onBackPressureDrop(){
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureDrop(i-> System.out.println("Dropping" + i))
+                .observeOn(Schedulers.io())
+                .subscribe(aLong -> {
+                    MyUtils.sleep(5);
+                    System.out.println(aLong);
+                });
+
+        MyUtils.sleep(5000);
+    }
+
+    @Test
+    public void flowable_generate() {
+        Flowable.generate(emitter ->
+                    emitter.onNext(
+                            ThreadLocalRandom.current().nextInt(1, 10000)))
+                .subscribeOn(Schedulers.computation())
+                .doOnNext(i -> System.out.println("Emitting " + i))
+                .observeOn(Schedulers.io())
+                .subscribe(i -> {
+                    MyUtils.sleep(50);
+                    System.out.println("Received " + i);
+                });
+
+        MyUtils.sleep(10000);
+    }
+
+    @Test
+    public void flowable_generate2() {
+       reverseGenerator(100, -100)
+               .subscribeOn(Schedulers.computation())
+               .doOnNext(i->System.out.println("Emitting " + i))
+               .observeOn(Schedulers.io())
+               .subscribe(i->{
+                   MyUtils.sleep(50);
+                   System.out.println("Received " + i);
+               });
+
+       MyUtils.sleep(50000);
+    }
+
+    static Flowable<Integer> reverseGenerator(int max, int min){
+        return Flowable.generate(()->new AtomicInteger(max+1),
+                (state,emitter) ->{
+                    int val = state.decrementAndGet();
+                    if(val < min) {
+                        emitter.onComplete();
+                    }
+                    emitter.onNext(val);
+                });
     }
 }
