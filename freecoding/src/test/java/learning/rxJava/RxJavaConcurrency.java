@@ -1,3 +1,5 @@
+package learning.rxJava;
+
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;

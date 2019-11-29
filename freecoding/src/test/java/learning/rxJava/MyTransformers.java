@@ -1,11 +1,11 @@
-import com.github.davidmoten.rx.Transformers;
-import com.github.davidmoten.rx.testing.TestingHelper;
+package learning.rxJava;
+
+import com.github.davidmoten.rx2.flowable.Transformers;
 import com.google.common.collect.ImmutableList;
 import io.reactivex.*;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 import org.junit.Test;
-import rx.functions.Func2;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -174,10 +174,11 @@ public class MyTransformers {
 
     @Test
     public void toListWhile_transFormers(){
-        Observable.range(1, 1000)
-                .count()
-                .to(TestingHelper.test())
-                .assertValue(1000)
-                .assertCompleted();
+        Flowable.just("Alpha","Beta","Zeta","Gamma","Delta","Theta","Epsilon")
+                .doOnNext(System.out::println)
+                .compose(Transformers.toListWhile((list,next) ->
+                        list.size() == 0 || list.get(0).length() == next.length()
+                ))
+                .subscribe(System.out::println);
     }
 }

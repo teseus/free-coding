@@ -1,3 +1,5 @@
+package learning.rxJava;
+
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import org.junit.Test;

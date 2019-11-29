@@ -1,3 +1,5 @@
+package learning.rxJava;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import org.junit.Test;
