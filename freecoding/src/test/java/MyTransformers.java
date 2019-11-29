@@ -1,15 +1,17 @@
+import com.github.davidmoten.rx.Transformers;
+import com.github.davidmoten.rx.testing.TestingHelper;
 import com.google.common.collect.ImmutableList;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableTransformer;
-import io.reactivex.Observable;
-import io.reactivex.ObservableTransformer;
+import io.reactivex.*;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 import org.junit.Test;
+import rx.functions.Func2;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Transformers {
+public class MyTransformers {
     @Test
     public void observable_transform_with_collect(){
         ImmutableList.Builder<String> builder = ImmutableList.<String>builder();
@@ -151,5 +153,31 @@ public class Transformers {
 
         observable.subscribe(i -> System.out.println("withZip Received 1 : " + i));
         observable.subscribe(i -> System.out.println("withZip Received 2 : " + i));
+    }
+
+    public static <T> SingleTransformer<Collection<T>, Collection<T>> toUnmodifiable() {
+        return new SingleTransformer<Collection<T>, Collection<T>>() {
+            @Override
+            public SingleSource<Collection<T>> apply(Single<Collection<T>> upstream) {
+                return upstream.map(Collections::unmodifiableCollection);
+            }
+        };
+    }
+
+    @Test
+    public void singleTransFormer(){
+        Observable.just("Alpha", "Beta", "Gamma", "Delta", "Epsilon")
+                .toList()
+                .compose(toUnmodifiable())
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void toListWhile_transFormers(){
+        Observable.range(1, 1000)
+                .count()
+                .to(TestingHelper.test())
+                .assertValue(1000)
+                .assertCompleted();
     }
 }

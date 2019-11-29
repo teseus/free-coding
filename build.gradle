@@ -52,6 +52,7 @@ configure(subprojects.findAll{it.name != 'point'}){ subproject ->
         compile("com.querydsl:querydsl-apt")
 
         compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.14'
+        implementation 'com.github.davidmoten:rxjava-extras:0.8.0.17'
 
         implementation 'org.springframework.boot:spring-boot-starter'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
