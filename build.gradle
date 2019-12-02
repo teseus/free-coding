@@ -27,18 +27,21 @@ subprojects {
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'org.sonarqube'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = '11.0'
+    targetCompatibility = '11.0'
 
     repositories {
         mavenCentral()
-        maven { url "https://repo.spring.io/milestone/" }
+        mavenLocal()
         jcenter()
     }
 
     dependencies {
         compile("com.querydsl:querydsl-jpa")
         compile("com.querydsl:querydsl-apt")
+
+        compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.15'
+        compile 'com.github.davidmoten:rxjava2-extras:0.1.36'
 
         compile('org.apache.httpcomponents:httpasyncclient')
         compile 'org.modelmapper:modelmapper:2.3.2'
