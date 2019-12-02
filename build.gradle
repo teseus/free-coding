@@ -1,49 +1,38 @@
 buildscript {
     ext {
+        depManagementVersion = "1.0.8.RELEASE"
         springBootVersion = '2.1.5.RELEASE'
-        kafka = '2.2.7.RELEASE'
-        querydslPluginVersion = '1.0.10'
     }
     repositories {
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" } // plugin 저장소
+        jcenter()
     }
     dependencies {
+        classpath("io.spring.gradle:dependency-management-plugin:${depManagementVersion}")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7")
-        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
-        classpath "io.franzbecker:gradle-lombok:1.11"
     }
 }
 
-plugins {
-    id "org.sonarqube" version "2.7"
+allprojects {
+    group 'com.wemakeprice.wmind.log.reporter'
+    version '1.0-SNAPSHOT'
 }
 
-ext {
-    projectGroup = 'com.wemakeprice.ad'
-    projectVersion = '0.0.1'
-}
+subprojects {
 
-def querydslProjects = [project(':freecoding')]
-
-configure(subprojects.findAll{it.name != 'point'}){ subproject ->
     apply plugin: 'java'
     apply plugin: 'groovy'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'org.sonarqube'
-    apply plugin: 'io.franzbecker.gradle-lombok'
 
-    group = "${projectGroup}"
-    version = "${projectVersion}"
-
-    sourceCompatibility = '11.0'
-    targetCompatibility = '11.0'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
         mavenCentral()
-        mavenLocal()
+        maven { url "https://repo.spring.io/milestone/" }
         jcenter()
     }
 
@@ -51,35 +40,23 @@ configure(subprojects.findAll{it.name != 'point'}){ subproject ->
         compile("com.querydsl:querydsl-jpa")
         compile("com.querydsl:querydsl-apt")
 
-        compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.15'
-        compile 'com.github.davidmoten:rxjava2-extras:0.1.36'
+        compile('org.apache.httpcomponents:httpasyncclient')
+        compile 'org.modelmapper:modelmapper:2.3.2'
 
-        implementation 'org.springframework.boot:spring-boot-starter'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         compile 'org.projectlombok:lombok'
-        annotationProcessor("org.projectlombok:lombok")
         testCompileOnly("org.projectlombok:lombok")
+        annotationProcessor("org.projectlombok:lombok")
         testAnnotationProcessor("org.projectlombok:lombok")
 
         compile 'com.google.guava:guava:23.0'
 
-        testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
-        testCompile 'org.spockframework:spock-spring:1.2-groovy-2.5'
         compile 'cglib:cglib-nodep:3.2.10'
+        compile 'org.spockframework:spock-core:1.2-groovy-2.5'
+        compile 'org.spockframework:spock-spring:1.2-groovy-2.5'
     }
 
-    task initSourceFolders {
-        sourceSets*.java.srcDirs*.each {
-            if( !it.exists() ) {
-                it.mkdirs()
-            }
-        }
-
-        sourceSets*.resources.srcDirs*.each {
-            if( !it.exists() ) {
-                it.mkdirs()
-            }
-        }
+    ext {
     }
 }
 

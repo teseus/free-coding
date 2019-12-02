@@ -63,8 +63,13 @@ public class ThreadPoolWithScheduler {
     @Test
     public void Scheduler_FromCallable(){
         Observable.fromCallable(()->MyUtils.getResponse("https://api.github.com/users/thomasnield/starred"))
+                .doOnSubscribe(i->System.out.println(
+                        "Subscribe : " + i +
+                        " Thread Name : " + Thread.currentThread().getName()))
                 .subscribeOn(Schedulers.io())
-                .subscribe(System.out::println);
+                .subscribe(i->System.out.println(
+                        "printed : " + i +
+                                " Thread Name : " + Thread.currentThread().getName()));
         MyUtils.sleep(10000);
     }
 
