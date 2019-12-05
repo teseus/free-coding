@@ -1,2 +1,2 @@
-port: 27017
-dbName: teseus.koreacentral.cloudapp.azure.com
+host : teseus.koreacentral.cloudapp.azure.com
+dbname: testdb

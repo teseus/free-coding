@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Parallelization {
     @Test
     public void Parallelize_AllItems_WithFlatMap(){
-        Observable.range(1,10)
+        Observable.range(1,100)
                 .flatMap(i->Observable.just(i)
                         .subscribeOn(Schedulers.computation())
                         .map(MyUtils::intenseCalculation))
