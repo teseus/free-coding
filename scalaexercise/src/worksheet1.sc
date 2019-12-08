@@ -6,4 +6,6 @@ object worksheet1 {
   2 to 10
   var y = true
   val pi = 3.14159
+
+  println("~~~~~~~~~~~ teseus hello ~~~~~~~~~~~~")
 }
