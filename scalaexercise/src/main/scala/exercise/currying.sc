@@ -22,10 +22,10 @@ println(modOne2(10))
 
 //========== exercise ===========
 
-def myCurl(x:Int)(y:Long):Boolean = x%y == 0
+def myCur(x:Int)(y:Int):Boolean = x%y == 0
 
-def myCurl1:Long => Boolean = myCurl(10)
-def myCurl2 = myCurl(10) _
+def myCurl1:Int => Boolean = myCur(10)
+def myCurl2 = myCur(10) _
 
 println(myCurl1(2))
 println(myCurl1(3))
