@@ -35,7 +35,7 @@ computer.work("슈퍼소닉")
 class Car(location:String) extends Machine with KrMachine {
   override def work(message: String): Unit = println(s"the car is working with $message in $location")
 
-  override def doing(message: String): Unit = println(s"overrided doing $message countryCode $countryCode")
+  override def doing(message: String): Unit = println(s"overrided doing $message countryCode $countryCode, serialNumber $serialNumber")
 }
 
 val car = new Car("현대")
