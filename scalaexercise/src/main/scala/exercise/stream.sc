@@ -42,3 +42,44 @@ nums3 = List( 1, 2, 3, 4, 5, 6, 1)
 nums3.dropWhile(_<3)
 nums3 = List(1, 2, 3, 1, 4, 5, 6, 1)
 nums3.dropWhile(_<3)
+
+for(item<-List(1,2,3).zip(List(3,2,1)))
+  println(item)
+
+for(item<-List(1,2,3).zip(List(4,3,2,1))) {
+  println(item)
+}
+
+var maps = Map("A" -> 1, "B" -> 2, "C" -> 3, "D" -> 4, "E" -> 5)
+maps.mapValues(x => x * x).foreach {
+  case (k, v) => println(s"key:$k, value:$v")
+}
+
+maps = Map("A" -> 1, "B" -> 2, "C" -> 3, "D" -> 4, "E" -> 5)
+maps.mapValues(x=>x*x).foreach(e=>e match {
+  case (k,v) => println(s"key:$k, value:$v")
+})
+
+var maps2 = Map("A"->List(1,2,3),"B"->List(2,3,4),"C"->List(3,4,5))
+maps2.mapValues(_.sum).foreach{ case (k,v)=> println(s"key:$k, value:$v")}
+
+var list1 = List(4,6,1,6,0)
+var l_sort = list1.sorted
+var r_sort = list1.sorted(Ordering.Int.reverse)
+
+var sList = List("aa", "bb", "cc")
+sList.sortBy(_.charAt(0))
+
+val l_sortwith = sList.sortWith(_ <= _)
+val r_sortWith = sList.sortWith(_ >= _)
+
+case class Person(index:Int,correct:Int)
+
+val persons = Array(Person(1, 3),Person(2, 4), Person(3, 4))
+
+persons.sortWith((l:Person, r:Person) => {
+  if(l.correct == r.correct)
+    l.index >= r.index
+
+  l.correct > r.correct
+})
