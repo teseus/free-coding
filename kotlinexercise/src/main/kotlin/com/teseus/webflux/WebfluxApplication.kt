@@ -1,15 +1,13 @@
-package com.teseus.kotlinexercise
+package com.teseus.webflux
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.http.MediaType
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import java.time.Duration
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.concurrent.ThreadLocalRandom
 
