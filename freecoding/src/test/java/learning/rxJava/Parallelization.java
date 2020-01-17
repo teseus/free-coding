@@ -11,12 +11,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Parallelization {
     @Test
     public void Parallelize_AllItems_WithFlatMap(){
+
+        System.out.println("Main " +
+                " on thread " + Thread.currentThread().getName());
+
         Observable.range(1,100)
-                .flatMap(i->Observable.just(i)
-                        .subscribeOn(Schedulers.computation())
-                        .map(MyUtils::intenseCalculation))
-                .subscribe(i -> System.out.println("Received " + i +
+                .forEach(i -> System.out.println("Received " + i +
                         " on thread " + Thread.currentThread().getName()));
+
+        Observable.just(1)
+                .subscribeOn(Schedulers.computation())
+                .forEach(i -> System.out.println("Received " + i +
+                        " on thread " + Thread.currentThread().getName()));
+
 
         MyUtils.sleep(10000);
 
