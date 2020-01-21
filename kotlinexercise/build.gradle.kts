@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.2.3.BUILD-SNAPSHOT"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
+    id("groovy")
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
 }
@@ -35,6 +36,8 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.spockframework:spock-core:1.2-groovy-2.5")
+    testImplementation("org.spockframework:spock-spring:1.2-groovy-2.5")
 }
 
 tasks.withType<Test> {

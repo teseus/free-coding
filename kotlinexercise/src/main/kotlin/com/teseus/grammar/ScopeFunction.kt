@@ -1,4 +1,4 @@
-package com.teseus.grammer
+package com.teseus.grammar
 
 fun main() {
     val book = Book("기사단장", 10000).apply{

@@ -1,4 +1,4 @@
-package com.teseus.grammer
+package com.teseus.grammar
 
 fun main() {
     val valInteger: Int = 10

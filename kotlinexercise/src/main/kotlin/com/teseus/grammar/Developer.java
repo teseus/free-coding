@@ -1,4 +1,4 @@
-package com.teseus.grammer;
+package com.teseus.grammar;
 
 public class Developer {
     private String name;

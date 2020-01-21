@@ -1,4 +1,4 @@
-package com.teseus.grammer
+package com.teseus.grammar
 
 fun main(){
     var a = FoodPoll("짜장")
