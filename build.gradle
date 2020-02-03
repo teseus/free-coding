@@ -55,8 +55,9 @@ subprojects {
         compile 'com.google.guava:guava:23.0'
 
         compile 'cglib:cglib-nodep:3.2.10'
-        compile 'org.spockframework:spock-core:1.2-groovy-2.5'
-        compile 'org.spockframework:spock-spring:1.2-groovy-2.5'
+        compile 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testCompileOnly 'org.spockframework:spock-core:1.2-groovy-2.5'
+        testCompileOnly 'org.spockframework:spock-spring:1.2-groovy-2.5'
     }
 
     ext {
