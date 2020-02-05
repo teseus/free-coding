@@ -1,12 +1,9 @@
 package com.teseus.kata;
 
-import java.util.Arrays;
-
 public class QuickSort {
     public static int[] sort(int[] source) {
         int copied[] = new int[source.length];
         System.arraycopy(source,0,copied,0,source.length);
-        System.out.println(Arrays.toString(source));
         quicksort(copied, 0, copied.length-1);
 
         return copied;
@@ -24,25 +21,31 @@ public class QuickSort {
 
     private static int partitioning(int[] arr, int start, int end) {
         int s = start, e = end;
-        printArrPart(arr, start, s, e);
         int medium = arr[(start+end)/2];
-        System.out.println("first selected medium index: " + (start+end)/2 + ", medium value: " + medium);
+        System.out.println("partitioning start i: " + (start+end)/2 + ", v: " + medium);
+        printSwapArr("<", arr, start, end, s, e);
         while(start<end){
             while(arr[start]<medium)start++;
             while(medium<arr[end])end--;
-            if(start<=end)
-                swap(arr, start++, end--);
+            if(start<=end) {
+                printSwapArr("-", arr, start, end, s, e);
+                swap(arr, start, end);
+                printSwapArr("-", arr, start, end, s, e);
+                start++; end--;
+            }
         }
-        printArrPart(arr, start, s, e);
+        printSwapArr(">", arr, start, end, s, e);
         return start;
     }
 
-    private static void printArrPart(int[] arr, int start, int s, int e) {
-        System.out.print("[");
+    private static void printSwapArr(String s1, int[] arr, int start, int end, int s, int e) {
+        System.out.print(s1 + "[");
         for (int i = s; i <= e; i++) {
-            System.out.print(arr[i]);
+            System.out.print(arr[i] + ", ");
         }
-        System.out.println("], start Idx: " + start + ", start value: " + arr[start]);
+        System.out.println("]"
+                + ", si: " + start + ", sv: " + arr[start]
+                + ", ei: " + end + ", ev: " + arr[end]);
     }
 
     private static void swap(int[] arr, int left, int right) {

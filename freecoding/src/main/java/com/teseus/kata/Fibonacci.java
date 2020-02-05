@@ -9,26 +9,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Fibonacci {
 
     public static BigInteger fib(BigInteger n) {
-        int inputValue = n.intValue();
-
         if(n.equals(BigInteger.ZERO) || n.equals(BigInteger.ONE)){
             return n;
         }
 
-        if(inputValue > 20000){
-            throw new IllegalArgumentException("out of index");
-        }
-        BigInteger[] bigIntegers = new BigInteger[inputValue+1];
+        int start = 0, end =0;
 
-        for (int i = 0; i <= inputValue; i++) {
-            if(i==0 || i==1){
-                bigIntegers[i] = BigInteger.valueOf(i);
+        int value = n.intValue();
+
+        if(value <0){
+            start = value;
+        } else {
+            end = value;
+        }
+
+        BigInteger[] bigIntegers = new BigInteger[3];
+
+        for (; start <= end; start++) {
+            int offset = start - value;
+            if(offset==0 || offset==1){
+                bigIntegers[offset] = BigInteger.valueOf(offset);
                 continue;
             }
-            bigIntegers[i] = bigIntegers[i-1].add(bigIntegers[i-2]);
+            bigIntegers[2] = bigIntegers[0].add(bigIntegers[1]);
+            bigIntegers[0] = bigIntegers[1];
+            bigIntegers[1] = bigIntegers[2];
         }
 
-        return bigIntegers[inputValue];
+        return bigIntegers[2];
     }
 
     @Test

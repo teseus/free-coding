@@ -6,11 +6,11 @@ class QuickSortTest extends Specification {
 
     def testSort1() {
         given:
-        def integers = [1,5,2,3,4,6] as int[]
+        def integers = [1,5,9,8,7,4,6,3,2] as int[]
         when:
         def sorted = QuickSort.sort(integers)
         then:
-        sorted == [1,2,3,4,5,6] as int[]
+        sorted == [1,2,3,4,5,6,7,8,9] as int[]
     }
 
     def testSort2() {
