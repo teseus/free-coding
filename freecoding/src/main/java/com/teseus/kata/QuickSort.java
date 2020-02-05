@@ -23,18 +23,18 @@ public class QuickSort {
         int s = start, e = end;
         int medium = arr[(start+end)/2];
         System.out.println("partitioning start i: " + (start+end)/2 + ", v: " + medium);
-        printSwapArr("<", arr, start, end, s, e);
-        while(start<end){
+        printSwapArr("<<", arr, start, end, s, e);
+        while(start<=end){
             while(arr[start]<medium)start++;
             while(medium<arr[end])end--;
             if(start<=end) {
-                printSwapArr("-", arr, start, end, s, e);
+                printSwapArr("<", arr, start, end, s, e);
                 swap(arr, start, end);
-                printSwapArr("-", arr, start, end, s, e);
+                printSwapArr(">", arr, start, end, s, e);
                 start++; end--;
             }
         }
-        printSwapArr(">", arr, start, end, s, e);
+        printSwapArr(">>", arr, start, end, s, e);
         return start;
     }
 
@@ -43,9 +43,10 @@ public class QuickSort {
         for (int i = s; i <= e; i++) {
             System.out.print(arr[i] + ", ");
         }
+
         System.out.println("]"
-                + ", si: " + start + ", sv: " + arr[start]
-                + ", ei: " + end + ", ev: " + arr[end]);
+                + ", si: " + start + ", sv: " + (start<=(arr.length-1)?arr[start]:"")
+                + ", ei: " + end + ", ev: " + (end>=0?arr[end]:""));
     }
 
     private static void swap(int[] arr, int left, int right) {
