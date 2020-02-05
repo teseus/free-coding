@@ -33,7 +33,22 @@ public class FibonacciTest {
 
     @Test
     public void testFib5() {
-        testFib(5, 20000);
+        testFib(5, 5);
+    }
+
+    @Test
+    public void testFib6() {
+        testFib(8, 6);
+    }
+
+    @Test
+    public void testFib7() {
+        testFib(-8, -6);
+    }
+
+    @Test
+    public void testFi8() {
+        testFib(-55, -10);
     }
 
     private static void testFib(long expected, long input) {
