@@ -1,10 +1,9 @@
 package com.teseus.kata;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class SquareSum {
     public static int squareSum(int[] p) {

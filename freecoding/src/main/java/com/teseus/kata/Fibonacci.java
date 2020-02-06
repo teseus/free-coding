@@ -1,11 +1,10 @@
 package com.teseus.kata;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigInteger;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-//https://www.codewars.com/kata/53d40c1e2f13e331fc000c26/train/java
 public class Fibonacci {
 
     public static BigInteger fib(BigInteger n) {
