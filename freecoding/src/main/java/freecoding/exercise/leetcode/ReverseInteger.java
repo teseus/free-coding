@@ -2,30 +2,20 @@ package freecoding.exercise.leetcode;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public class ReverseInteger {
     public static int reverse(int x) {
-        int temp = x;
+        int temp = x, pop;
         long reverse = 0;
-        List<Integer> store = new ArrayList<>();
 
         while (temp != 0){
-            store.add(temp%10);
+            pop = temp%10;
             temp /= 10;
-        }
-
-        long decimal = 1;
-        for (int i = store.size()-1; i >= 0; i--) {
-            reverse += store.get(i) * decimal;
+            reverse = reverse * 10 + pop;
             if(Integer.MIN_VALUE > reverse || Integer.MAX_VALUE < reverse)
                 return 0;
-            decimal *= 10;
         }
-
 
         return (int) reverse;
     }
