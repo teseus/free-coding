@@ -2,7 +2,7 @@ package freecoding.exercise.leetcode;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class Palindrome {
     public static boolean isPalindrome(int x) {
@@ -42,11 +42,11 @@ public class Palindrome {
 
     @Test
     public void test1(){
-        assertEquals(Palindrome.isPalindrome1(121),true);
-        assertEquals(Palindrome.isPalindrome1(-121),false);
-        assertEquals(Palindrome.isPalindrome1(1221),true);
-        assertEquals(Palindrome.isPalindrome1(12021),true);
-        assertEquals(Palindrome.isPalindrome1(123454321),true);
-        assertEquals(Palindrome.isPalindrome1(1234554321),true);
+        assertTrue(Palindrome.isPalindrome1(121));
+        assertFalse(Palindrome.isPalindrome1(-121));
+        assertTrue(Palindrome.isPalindrome1(1221));
+        assertTrue(Palindrome.isPalindrome1(12021));
+        assertTrue(Palindrome.isPalindrome1(123454321));
+        assertTrue(Palindrome.isPalindrome1(1234554321));
     }
 }
