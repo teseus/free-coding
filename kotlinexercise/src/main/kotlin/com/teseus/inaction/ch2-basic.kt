@@ -1,6 +1,7 @@
 package com.teseus.inaction
 
 import java.util.*
+import strings.lastChar as last
 
 fun main() {
     usingWhen()
@@ -8,14 +9,19 @@ fun main() {
     usingListWithIndex()
     rangeFun()
     stringCheckWithKeywordIn()
+
+    print("abc.lastChar() -> ")
+    println("abc".last())
 }
 
 fun stringCheckWithKeywordIn() {
+
     println("====== stringCheckWithKeywordIn ======")
     println("====== test1 ======")
     println("kotlin" in "java".."scala")
     println("====== test2 ======")
     println("kotlin" in setOf("java", "scala"))
+
 }
 
 fun rangeFun() {
