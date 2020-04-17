@@ -17,5 +17,4 @@ fun main() {
     println(sb.lastChar)
     sb.lastChar = '!'
     println(sb)
-
 }
