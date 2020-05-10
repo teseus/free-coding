@@ -4,6 +4,7 @@ class User constructor(val _nickname: String){
     val nickname: String
     init {
         nickname = _nickname
+        println(nickname)
     }
 }
 
@@ -15,6 +16,14 @@ class User constructor(val _nickname: String){
 //3rd way
 //class User(val nickname:String)
 
-fun main() {
+open class Person(val nickname: String)
 
+class TwitterPerson(nickname: String) : Person(nickname)
+
+fun main() {
+    User("teseus")
+
+    val per : Person = TwitterPerson("Twitter")
+
+    println(per.nickname)
 }
