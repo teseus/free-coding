@@ -1,15 +1,16 @@
 package com.teseus.inaction.ch8
 
-fun String.filter(predicate: (Char) -> Boolean) : String{
-    val sb: StringBuilder = java.lang.StringBuilder()
+fun String.filter(predicate: (Char) -> Boolean): String {
+    val sb = StringBuilder()
     for(index in 0 until length) {
-        if (predicate(get(index))) {
-            sb.append(get(index))
+        val char = get(index)
+        if (predicate(char)) {
+            sb.append(char)
         }
     }
     return sb.toString()
 }
 
-fun main() {
-    println("ab1c".filter { it in 'a'..'z' })
+fun main(){
+    println("a1b2c3".filter { it in 'a'..'z' })
 }
