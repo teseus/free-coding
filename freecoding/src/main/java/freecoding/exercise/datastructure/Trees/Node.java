@@ -1,4 +1,4 @@
-package freecoding.exercise.Trees;
+package freecoding.exercise.datastructure.Trees;
 
 public class Node {
     int data;
