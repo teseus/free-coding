@@ -28,7 +28,6 @@ public class FluxGenerator {
                 }
         );
 
-
         fibonacci.take(5)
         .subscribe(
                 it->{
