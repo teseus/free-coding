@@ -14,11 +14,7 @@ public class Solution {
         }
 
         long insize = n % s.length();
-        long count = 0;
-
-        for (int i = 0; i < pos.size(); i++) {
-            if(pos.get(i) < insize) count++;
-        }
+        long count = pos.stream().filter(po -> po < insize).count();
 
         count += (n/s.length()) * pos.size();
 
