@@ -1,4 +1,4 @@
-package freecoding.exercise.hackersrank.repeatedstring;
+package freecoding.exercise.hackersrank.warmup.repeatedstring;
 
 import java.util.ArrayList;
 import java.util.List;

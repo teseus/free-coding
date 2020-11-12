@@ -1,4 +1,4 @@
-package freecoding.exercise.hackersrank.countingvalleys;
+package freecoding.exercise.hackersrank.warmup.countingvalleys;
 
 import static org.junit.Assert.assertEquals;
 

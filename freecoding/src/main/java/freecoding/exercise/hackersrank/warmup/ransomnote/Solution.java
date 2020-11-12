@@ -1,4 +1,4 @@
-package freecoding.exercise.hackersrank.ransomnote;
+package freecoding.exercise.hackersrank.warmup.ransomnote;
 
 import java.util.Arrays;
 import java.util.HashMap;

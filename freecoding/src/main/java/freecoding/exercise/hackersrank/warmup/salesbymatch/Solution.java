@@ -1,4 +1,4 @@
-package freecoding.exercise.hackersrank.salesbymatch;
+package freecoding.exercise.hackersrank.warmup.salesbymatch;
 
 import java.io.IOException;
 import java.util.HashSet;
