@@ -1,7 +1,7 @@
 buildscript {
     ext {
         depManagementVersion = "1.0.8.RELEASE"
-        springBootVersion = '2.1.5.RELEASE'
+        springBootVersion = "2.1.5.RELEASE"
     }
     repositories {
         mavenCentral()
@@ -51,6 +51,7 @@ subprojects {
         testCompileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
         testAnnotationProcessor("org.projectlombok:lombok")
+        compile "io.projectreactor:reactor-test"
 
         compile 'com.google.guava:guava:23.0'
 
