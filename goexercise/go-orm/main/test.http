@@ -1,0 +1,14 @@
+### create test
+POST http://localhost:8081/user/teseus/teseus@gmail.com
+Content-Type: application/json
+
+### update test
+PUT http://localhost:8081/user/teseus/teseus1@daum.net
+Content-Type: application/jdson
+
+### delete test
+DELETE http://localhost:8081/user/teseus
+Content-Type: application/json
+
+### get all user
+GET http://localhost:8081/users
