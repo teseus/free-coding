@@ -7,4 +7,6 @@ go run *.go
 ```
 
 ######2. in IDE
+- execute at the directory containing files
+
 ![superkey](../../images/executeInIDE.png)
