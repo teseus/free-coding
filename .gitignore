@@ -33,3 +33,4 @@ out/
 
 ### Go build ###
 pkg/
+goexercise/src/
