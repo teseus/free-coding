@@ -1,6 +1,7 @@
 ### create test
 POST http://localhost:8080/videos
 Content-Type: application/json
+Authorization: Basic pragmatic reviews
 
 {
   "title" : "abc title2",
@@ -11,3 +12,5 @@ Content-Type: application/json
 ### get
 GET http://localhost:8080/videos
 Content-Type: application/json
+Authorization: Basic pragmatic reviews
+
