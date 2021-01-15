@@ -1,0 +1,13 @@
+### create test
+POST http://localhost:8080/videos
+Content-Type: application/json
+
+{
+  "title" : "abc title2",
+  "description" : "2222",
+  "url" : "http://abc2222.com"
+}
+
+### get
+GET http://localhost:8080/videos
+Content-Type: application/json
