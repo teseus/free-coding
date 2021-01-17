@@ -6,7 +6,13 @@ Authorization: Basic pragmatic reviews
 {
   "title" : "abc title2",
   "description" : "2222",
-  "url" : "http://abc2222.com"
+  "url" : "abc2222",
+  "author": {
+    "firstname" : "test",
+    "lastname" : "Pyun",
+    "age" : 50,
+    "email" : "teseus1@daum.net"
+  }
 }
 
 ### get
