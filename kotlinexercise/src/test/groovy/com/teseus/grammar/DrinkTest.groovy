@@ -1,10 +1,9 @@
 package com.teseus.grammar
 
-import org.codehaus.groovy.runtime.metaclass.MissingMethodExceptionNoStack
+
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
-
 
 class DrinkTest extends Specification {
     @Subject
