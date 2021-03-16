@@ -74,8 +74,10 @@ fun usingMap() {
 }
 
 private fun usingWhen() {
-    for (i in 100 downTo 1 step 2) {
+    for (i in 1..10) {
         println(fizzbuzz(i))
+        println(fizzbuzz2(i))
+        println(fizzbuzz3(i))
     }
 }
 
@@ -83,5 +85,15 @@ fun fizzbuzz(value: Int): String = when {
     value % 15 == 0 -> "fizzbuzz"
     value % 3 == 0-> "fizz"
     value % 5 == 0-> "buzz"
+    else -> "$value"
+}
+
+fun fizzbuzz2(value: Int): String = when(value){
+    1 -> "one"
+    else -> "$value"
+}
+
+fun fizzbuzz3(value: Int): String = when{
+    value == 1 -> "one"
     else -> "$value"
 }
